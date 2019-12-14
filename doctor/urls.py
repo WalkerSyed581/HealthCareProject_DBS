@@ -15,12 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import views
+
+app_name = 'doctor'  # here for namespacing of urls.
 
 urlpatterns = [
-    path('', include('main.urls')),
-    path('main/', include('main.urls')),
-    path('doctor/', include('doctor.urls')),
-    path('patient/', include('patient.urls')),
-    path('helping_staff/', include('helping_staff.urls')),
-    path('admin/', admin.site.urls),
+    
 ]
