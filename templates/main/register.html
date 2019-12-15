@@ -11,6 +11,19 @@
       <input type="text" class="form-control" id="name-field">
     </div>
     <div class="form-group">
+      <label for="sex">Sex</label>
+      <select id="sex" class="form-control">
+        <option selected>Choose...</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="contact-number">Phone Number</label>
+      <input type="text" class="form-control" id="contact-number">
+    </div>
+    <div class="form-group">
         <label for="loginID">Email address</label>
         <input type="email" class="form-control" id="loginID" aria-describedby="emailHelp">
     </div>
@@ -19,13 +32,21 @@
       <input type="password" class="form-control" id="password">
     </div>
     <div class="form-group">
-        <label for="re-password">Retype-Password</label>
+        <label for="re-password">Retype Password</label>
         <input type="password" class="form-control" id="re-password">
     </div>
-    >
+    
   <div class="form-group">
     <label for="inputAddress">Address</label>
     <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="inputPayMethod">Method of Payment</label>
+    <select id="inputPayMethod" class="form-control">
+      <option selected>Choose...</option>
+      <option>Cash</option>
+      <option>Credit Card</option>
+    </select>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -39,7 +60,8 @@
         <option>Punjab</option>
         <option>KPK</option>
         <option>Sindh</option>
-        <option></option>
+        <option>AJK</option>
+        <option>Gilgi Baltistan</option>
       </select>
     </div>
     <div class="form-group col-md-2">
@@ -47,7 +69,39 @@
       <input type="text" class="form-control" id="inputZip">
     </div>
   </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="medicalHistoryBool">
+    <label class="form-check-label" for="medicalHistoryBool">Do you have any medical history?</label>
+  </div>
+  <div class="form-row d-none" id="hidden-field">
+    <div class="form-group col-md-4">
+      <label for="condition">Condition</label>
+      <input type="text" class="form-control" id="condition">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="doctor-name">Doctor's Name</label>
+      <input type="text" class="form-control" id="doctor-name">
+    </div>
+    <div class="form-group col-md-5">
+      <label for="prescriptions">Prescriptions</label>
+      <input type="text" class="form-control" id="prescriptions">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<script>
+checkbox = document.querySelector('#medicalHistoryBool');
+hiddenField = document.querySelector('#hidden-field');
+      
 
+checkbox.addEventListener('click',function checkBoxClick(e){
+  if(checkbox.checked == true){
+    hiddenField.classList.remove("d-none");
+    document.querySelector('#hidden-field input').setAttribute("required","");
+  } else {
+    hiddenField.classList.add("d-none");
+    document.querySelector('#hidden-field input').removeAttribute("required");
+  }
+},false)
+</script>
 {% endblock %}

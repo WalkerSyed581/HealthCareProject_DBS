@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<article class="content bill-content">
+    <img href="https://via.placeholder.com/200" class="patient-img"></img>
+    <p>Patient's Name : John Doe</p>
+    <p>Payment Method : Cash</p>
+    <p>Payment Status : Unpaid/Remaining/Paid</p>
+    <ul id="fees">
+        <li class="doctor-fee">
+            Doctor Filaana Fee: 1000 
+        </li>
+        <li class="room-fee">
+            Room 37 Fee: 1000 
+        </li>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <li class="prescription-fee">
+                Prescription Fee:  1000 
+            </li>
+        </a>
+        <ul class="collapse" id="collapseExample">
+            <li>
+                Midazolam Fee: 500
+            </li>
+            <li>
+                Brufen Fee: 500
+            </li>
+        </ul>
+        <li class="total-fee">
+            Total: 3000
+        </li>
+    </ul>
+</article>
+{% endblock %}

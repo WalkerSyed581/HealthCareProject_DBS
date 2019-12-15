@@ -1,23 +1,6 @@
-
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
 /*
  * Globals
  */
-
 
 /* Links */
 
@@ -26,6 +9,7 @@ a:focus,
 a:hover {
     color: #fff;
 }
+
 
 /* Custom default button */
 
@@ -39,6 +23,7 @@ a:hover {
     border: .05rem solid #fff;
 }
 
+
 /*
  * Base structure
  */
@@ -49,11 +34,10 @@ body {
 }
 
 body {
-    display: -ms-flexbox;
-    display: flex;
     color: #000;
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
 }
+
 
 /*
  * Header
@@ -76,6 +60,7 @@ body {
     }
 }
 
+
 /*
  * Cover
  */
@@ -88,6 +73,7 @@ body {
     padding: .75rem 1.25rem;
     font-weight: 700;
 }
+
 
 /*
  * Footer
@@ -135,3 +121,15 @@ body {
 .masthead {
     margin-bottom: 0;
 }
+
+a.card:hover,a.card:focus{
+    color: none;
+}
+a.card{
+    color: #000;
+}
+
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
+

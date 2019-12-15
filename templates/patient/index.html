@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<article class="content patient-index">
+    <section class="upcoming-appointments">
+        <!-- Display only appointments within 3 days -->
+        <div class="card appointment">
+            <!-- Doctor's image goes here -->
+            <img href="https://via.placeholder.com/200" class="doctor-img"></img>
+            <div class="appointment-excerpt">
+                <h3>Doctor's Name: John Doe</h3>
+                <p>Doctor's Expertise: Surgeon</p>
+                <p>Ailment Notes: Complaints of being overly skinny</p>
+                <span>Time and Date: 25th Dec 2019, 15:20</span>
+            </div>
+        </div>
+        <div class="card appointment">
+            <!-- Doctor's image goes here -->
+            <img href="https://via.placeholder.com/200" class="doctor-img"></img>
+            <div class="appointment-excerpt">
+                <h3>Doctor's Name: John Doe</h3>
+                <p>Doctor's Expertise: Surgeon</p>
+                <p>Ailment Notes: Complaints of being overly skinny</p>
+                <span>Time and Date: 25th Dec 2019, 15:20</span>
+            </div>
+        </div>
+        <div class="card appointment">
+            <!-- Doctor's image goes here -->
+            <img href="https://via.placeholder.com/200" class="doctor-img"></img>
+            <div class="appointment-excerpt">
+                <h3>Doctor's Name: John Doe</h3>
+                <p>Doctor's Expertise: Surgeon</p>
+                <p>Ailment Notes: Complaints of being overly skinny</p>
+                <span>Time and Date: 25th Dec 2019, 15:20</span>
+            </div>
+        </div>
+    </section>
+    <section class="medical-report">
+        <div class="med-report">
+            The report in HTML brought in from the database goes here
+        </div>
+        <button class="download-report">Download PDF</button>
+    </section>
+    <section class="lab-reports">
+        <a href="#" class="card lab-report">
+            <img href="https://via.placeholder.com/200" class="patient-img"></img>
+            <div class="appointment-content">
+                <h3>Test Name: John Doe</span>
+                <span>Date of Test: 25th Dec 2019</span>
+            </div>
+        </a>
+        <a href="#" class="card lab-report">
+            <img href="https://via.placeholder.com/200" class="patient-img"></img>
+            <div class="appointment-content">
+                <h3>Test Name: Diarrahea</span>
+                <span>Date of Test: 25th Dec 2019</span>
+            </div>
+        </a>
+    </section>
+</article>
+
+{% endblock %}

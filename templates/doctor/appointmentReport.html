@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<article class="content appointment-content">
+
+    <section href="#" class="appointment">
+        <img href="https://via.placeholder.com/200" class="patient-img"></img>
+        <div class="appointment-content">
+            <h3>Patient Name: John Doe</span>
+            <p>Ailment Notes: Complaints of being overly skinny</p>
+            <span>Patient Age: 26</span>
+            <span>Time and Date: 25th Dec 2019, 15:20</span>
+        </div>
+    </section>
+    <section class="report">
+        <div id="editor">Enter the report here...</div>
+    </section>
+    <button id="submitReport">Submit Report</button>
+
+</article>
+<script>
+    window.onload = function(){
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+    }
+</script>
+
+{% endblock %}

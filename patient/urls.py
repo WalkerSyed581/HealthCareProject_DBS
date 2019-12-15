@@ -20,5 +20,7 @@ from . import views
 app_name = 'patient'  # here for namespacing of urls.
 
 urlpatterns = [
-    
+    path('', views.index, name='index'),
+    path('bill/', views.bill, name='bill'),
+    path('labReport/', views.labReport, name='labReport'),
 ]

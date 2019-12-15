@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<article>
+    <section class="patient-personal-info">
+        <img src="https://via.placeholder.com/300">
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>John Smith</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>26</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>Male</td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td>john@example.com</td>
+            </tr>
+            <tr>
+                <th>Contact Number</th>
+                <td>09141349012</td>
+            </tr>
+        </table>
+    </section>
+    <table style="width:100%" class="patient-med-info">
+        <tr>
+            <th>Room No.</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Nurse/Ward Boy</th>
+            <td>John Doe</td>
+        </tr>
+        <tr>
+            <th>Appointment Time</th>
+            <td>25th Dec 2019,15:20</td>
+        </tr>
+        <tr>
+            <th>Previous Medical Conditions</th>
+            <td>Schizophrenia</td>
+        </tr>
+        <tr>
+            <th>Lab Tests (if any)</th>
+            <td><a href="#">Tests for this patients</a></td>
+        </tr>
+        <tr>
+            <th>Current Medical Report</th>
+            <td><a href="#">Report of this patients</a></td>
+        </tr>
+
+      </table>
+</article>
+
+{% endblock %}
