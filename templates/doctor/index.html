@@ -4,84 +4,107 @@
 
 
 {% block content %}
-{% include 'partials/_mid-cover.html' %}
+<div class="docHeader">
+    <h1>Dr. John Smith's Dashboard</h1>
+</div>
+<div class="mainContent docContent">
+    {% include 'partials/_aside_doctor.html' %}
 
-<article>
-    <section class="cards appointments">
-        <a href="#" class="card appointment">
-                <img href="https://via.placeholder.com/200" class="patient-img"></img>
+    <article>
+        <h2>Appointments</h2>
+        <section class="cards appointments">
+            <div class="card appointment">
+                <h3>Patient Name: John Doe</h3>
                 <div class="appointment-content">
-                    <h3>Patient Name: John Doe</span>
-                    <p>Ailment Notes: Complaints of being overly skinny</p>
-                    <span>Patient Age: 26</span>
-                    <span>Time and Date: 25th Dec 2019, 15:20</span>
+                    <div class="appointment-text">
+                        <p>Ailment Notes: Complaints of being overly skinny</p>
+                        <span>Patient Age: 26</span>
+                        <span>Time and Date: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Show Patient Info</button>
+                    </div>
                 </div>
-        </a>
-        <a href="#" class="card appointment">
-            <img href="https://via.placeholder.com/200" class="patient-img"></img>
-            <div class="appointment-content">
-                <h3>Patient Name: John Doe</span>
-                <p>Ailment Notes: Complaints of being overly skinny</p>
-                <span>Patient Age: 26</span>
-                <span>Time and Date: 25th Dec 2019, 15:20</span>
             </div>
-        </a>
-        <a href="#" class="card appointment">
-            <img href="https://via.placeholder.com/200" class="patient-img"></img>
-            <div class="appointment-content">
-                <h3>Patient Name: John Doe</span>
-                <p>Ailment Notes: Complaints of being overly skinny</p>
-                <span>Patient Age: 26</span>
-                <span>Time and Date: 25th Dec 2019, 15:20</span>
+            <div class="card appointment">
+                <h3>Patient Name: John Doe</h3>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <p>Ailment Notes: Complaints of being overly skinny</p>
+                        <span>Patient Age: 26</span>
+                        <span>Time and Date: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Show Patient Info</button>
+                    </div>
+                </div>
             </div>
-        </a>
-        <a href="#" class="card appointment">
-            <img href="https://via.placeholder.com/200" class="patient-img"></img>
-            <div class="appointment-content">
-                <h3>Patient Name: John Doe</span>
-                <p>Ailment Notes: Complaints of being overly skinny</p>
-                <span>Patient Age: 26</span>
-                <span>Time and Date: 25th Dec 2019, 15:20</span>
+            <div class="card appointment">
+                <h3>Patient Name: John Doe</h3>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <p>Ailment Notes: Complaints of being overly skinny</p>
+                        <span>Patient Age: 26</span>
+                        <span>Time and Date: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Show Patient Info</button>
+                    </div>
+                </div>
             </div>
-        </a>
-        <a href="#" class="appointment">
-            <img href="https://via.placeholder.com/200" class="patient-img"></img>
-            <div class="appointment-content">
-                <h3>Patient Name: John Doe</span>
-                <p>Ailment Notes: Complaints of being overly skinny</p>
-                <span>Patient Age: 26</span>
-                <span>Time and Date: 25th Dec 2019, 15:20</span>
+            <div class="card appointment">
+                <h3>Patient Name: John Doe</h3>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <p>Ailment Notes: Complaints of being overly skinny</p>
+                        <span>Patient Age: 26</span>
+                        <span>Time and Date: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Show Patient Info</button>
+                    </div>
+                </div>
             </div>
-        </a>
-    </section>
-    <section class="cards recur-patients">
-        <a href="#" class="card patient">
-            <img href="https://via.placeholder.com/200" class="patient-img"></img>
-            <div class="recur-patient-content">
+        </section>
+        <h2>Recurring Patients</h2>
+        <section class="cards recur-patients">
+            <div href="#" class="card patient">
                 <h3>Patient Name: John Smith</h3>
-                <div class="medical-report">
-                    <p>Short Excerpt of Report: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint placeat, quas deleniti, rerum quam quia et reiciendis molestias minima tenetur inventore dignissimos earum? Ratione praesentium nulla voluptate fugiat illum cum.</p>
-                    <span>Current Condition: Loreamlkf aklajf</span>
+                <div class="recur-patient-content">
+                    <div class="recur-patient-text">
+                        <div class="medical-report">
+                            <p>Short Excerpt of Report: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint placeat, quas deleniti, rerum quam quia et reiciendis molestias minima tenetur inventore dignissimos earum? Ratione praesentium nulla voluptate fugiat illum cum.</p>
+                            <span>Current Condition: Loreamlkf aklajf</span>
+                        </div>
+                        <span>Patient Age: 56</span>
+                        <span>Next Appointment: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <a class="btn btn-danger" href="#">View Medical Report</a>
+                    </div>
                 </div>
-                <span>Patient Age: 56</span>
-                <span>Next Appointment: 25th Dec 2019, 15:20</span>
-                <button><a href="#">View Details</a></button>
             </div>
-        </a>
-        <a href="#" class="card patient">
-            <img href="https://via.placeholder.com/200" class="patient-img"></img>
-            <div class="recur-patient-content">
+            <div href="#" class="card patient">
                 <h3>Patient Name: John Smith</h3>
-                <div class="medical-report">
-                    <p>Short Excerpt of Report: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore laborum reprehenderit sunt quae incidunt beatae quasi impedit dolores quidem accusantium, mollitia pariatur ratione, optio praesentium, exercitationem suscipit nostrum inventore architecto.</p>
-                    <span>Current Condition: Loreamlkf aklajf</span>
+                <div class="recur-patient-content">
+                    <div class="recur-patient-text">
+                        <div class="medical-report">
+                            <p>Short Excerpt of Report: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint placeat, quas deleniti, rerum quam quia et reiciendis molestias minima tenetur inventore dignissimos earum? Ratione praesentium nulla voluptate fugiat illum cum.</p>
+                            <span>Current Condition: Loreamlkf aklajf</span>
+                        </div>
+                        <span>Patient Age: 56</span>
+                        <span>Next Appointment: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <a class="btn btn-danger" href="#">View Medical Report</a>
+                    </div>
                 </div>
-                <span>Patient Age: 56</span>
-                <span>Next Appointment: 25th Dec 2019, 15:20</span>
-                <button><a href="#">View Details</a></button>
             </div>
-        </a>
-    </section>
-</article>
-
+        </section>
+    </article>
+</div>
 {% endblock %}

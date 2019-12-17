@@ -1,30 +1,157 @@
-/*
- * Globals
+ /*
+ * Animations
  */
-
-/* Links */
-
-a,
-a:focus,
-a:hover {
-    color: #fff;
+ 
+ @keyframes roundCorners {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    0% {
+        border-bottom-left-radius: 0% 0%;
+        border-bottom-right-radius: 0% 0%;
+    }
+    10% {
+        border-bottom-left-radius: 5% 5%;
+        border-bottom-right-radius: 5% 5%;
+    }
+    20% {
+        border-bottom-left-radius: 10% 10%;
+        border-bottom-right-radius: 10% 10%;
+    }
+    30% {
+        border-bottom-left-radius: 15% 15%;
+        border-bottom-right-radius: 15% 15%;
+    }
+    40% {
+        border-bottom-left-radius: 20% 20%;
+        border-bottom-right-radius: 20% 20%;
+    }
+    50% {
+        border-bottom-left-radius: 25% 25%;
+        border-bottom-right-radius: 25% 25%;
+    }
+    60% {
+        border-bottom-left-radius: 30% 30%;
+        border-bottom-right-radius: 30% 30%;
+    }
+    70% {
+        border-bottom-left-radius: 35% 35%;
+        border-bottom-right-radius: 35% 35%;
+    }
+    80% {
+        border-bottom-left-radius: 40% 40%;
+        border-bottom-right-radius: 40% 40%;
+    }
+    90% {
+        border-bottom-left-radius: 45% 45%;
+        border-bottom-right-radius: 45% 45%;
+    }
+  
+    to {
+        border-bottom-left-radius: 50% 50%;
+        border-bottom-right-radius: 50% 50%;
+    }
+  }
+  
+.roundCorners{
+  animation-name: roundCorners;
+  animation-duration: 0.25s;
+  animation-delay: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 
-/* Custom default button */
+@keyframes bounceInLeft {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(-3000px, 0, 0);
+      transform: translate3d(-3000px, 0, 0);
+    }
+  
+    60% {
+      opacity: 1;
+      -webkit-transform: translate3d(25px, 0, 0);
+      transform: translate3d(25px, 0, 0);
+    }
+  
+    75% {
+      -webkit-transform: translate3d(-10px, 0, 0);
+      transform: translate3d(-10px, 0, 0);
+    }
+  
+    90% {
+      -webkit-transform: translate3d(5px, 0, 0);
+      transform: translate3d(5px, 0, 0);
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
 
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-    color: #000;
-    text-shadow: none;
-    /* Prevent inheritance from `body` */
-    background-color: #fff;
-    border: .05rem solid #fff;
+
+
+@keyframes bounceInRight {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(3000px, 0, 0);
+      transform: translate3d(3000px, 0, 0);
+    }
+  
+    60% {
+      opacity: 1;
+      -webkit-transform: translate3d(-25px, 0, 0);
+      transform: translate3d(-25px, 0, 0);
+    }
+  
+    75% {
+      -webkit-transform: translate3d(10px, 0, 0);
+      transform: translate3d(10px, 0, 0);
+    }
+  
+    90% {
+      -webkit-transform: translate3d(-5px, 0, 0);
+      transform: translate3d(-5px, 0, 0);
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+.bounceInRight {
+    -webkit-animation-name: bounceInRight;
+    animation-name: bounceInRight;
 }
-
-
-/*
+  
+ /*
  * Base structure
  */
 
@@ -35,8 +162,85 @@ body {
 
 body {
     color: #000;
-    box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
 }
+
+/* Links */
+
+a,
+a:focus,
+a:hover {
+    color: #fff;
+}
+
+h1{
+    color: rgba(0, 0, 255, 0.75);
+    font-size: 3rem;
+}
+h2{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.5rem;
+}
+h4{
+    font-size: 1.25rem;
+}
+
+p.firstPara{
+}
+
+/*
+*
+*/
+
+#login-form{
+ width: 25%;
+}
+#login-form label{
+
+}
+
+/*
+* Main Styles
+*/
+.mainContent{
+    display: flex;
+}
+
+.mainContent aside {
+    background: rgba(0, 0, 255, 0.5);
+    padding: 4em;
+}
+
+main a:focus,
+main a:hover {
+    color: rgba(0, 0, 255, 0.75);
+    text-decoration: none;;
+}
+
+/*
+* Sidebar and About Us Page Styles
+*/
+
+ul.sidebarLinks {
+    padding: 20% 0 0;
+    width: 11rem;
+}
+.sidebarLinks > li {
+    padding: 0.5em;
+    border-top: 0.5px solid white;
+    border-bottom: 0.5px solid white;
+}
+
+ul.dropdown-menu {
+    background: black;
+}
+
+.aboutUs .admins{
+    display: flex;
+}
+
+
 
 
 /*
@@ -62,29 +266,11 @@ body {
 
 
 /*
- * Cover
- */
-
-.cover {
-    padding: 0 1.5rem;
-}
-
-.cover .btn-lg {
-    padding: .75rem 1.25rem;
-    font-weight: 700;
-}
-
-
-/*
- * Footer
- */
-
-.mastfoot {
-    color: rgba(255, 255, 255, .5);
-}
+* Navigation
+*/
 
 .navbar {
-    background-color: rgba(255, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .navbar-dark .navbar-nav .nav-link:focus,
@@ -98,30 +284,156 @@ body {
 .navbar-dark .navbar-nav .show>.nav-link {
     color: #fff;
 }
+/*
+* Main cover area
+*/
 .mid-cover{
     background-image: url("../images/Stock2.jpg");
-    height: 500px; 
+    height: 100vh; 
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
-
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.7);
+    position: relative;
 }
 
-.layer {
-    background-color: rgba(0,0,0, 0.5);
+#call-to-action{
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 42%;
+    left: 36%;
+    color: white;
 }
 
+#call-to-action .btn{
+    border: 2px solid black;
+    background-color: transparent;
+    color: white;
+    border-radius: 25px 25px 25px 25px;
+    transition: all 0.5s ease-in;
+}
+
+#call-to-action .btn:hover,#call-to-action .btn:focus{
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+}
 .masthead {
     margin-bottom: 0;
 }
 
+/*
+* Article Body
+*/
+/* 
+article.homePage{
+    padding: 0 2em;
+    background-image: url(../images/hospitalIcons1.svg), url(../images/hospitalIcons2.svg),url(../images/hospitalIcons3.svg),url(../images/hospitalIcons4.svg),url(../images/hospitalIcons5.svg),url(../images/hospitalIcons6.svg),url(../images/hospitalIcons7.svg),url(../images/hospitalIcons8.svg);
+    background-attachment: fixed;
+    background-position: 50% 10%,73% 65%,30% 60%,50% 103%,-3% 5%,103% 5%,-3% 103%,101% 103%;
+    background-size: 300px,300px,300px,300px,150px,150px,150px,100px;
+    background-color: rgba(0,0,0,0.7);
+    background-repeat: no-repeat;
+} */
+
+article.aboutUs{
+    padding: 1em 5em;
+}
+
+
+/*
+* Service Cards
+*/
+.service-cards,.appointments,.recur-patients,.upcoming-appointments{
+    padding: 2em 2em 0;
+}
+.service-cards .card,.appointments .card,.recur-patients .card,.upcoming-appointments .card{
+    flex-direction: row;
+    margin-bottom: 1em;
+    background-color: rgba(0,0,0,0.5);
+    color:white;
+    border-radius: 5%;
+}
+
+
+
+
+/*
+* Endorsements cards
+*/
+
+.homePage .endorsements{
+    background-color: black;
+    padding: 3.5em 0em;
+    margin: 2em 2em 0;
+}
+
+.endorsements .card{
+    margin-bottom: 1em;
+    background-color: transparent;
+    padding:0;
+    color:rgba(255,255,255,0.75);
+    border: 0.1em solid rgba(255,255,255,0.75);
+    
+}
+
+.endorsements .card .card-text{
+    transition: all 0.75s ease-in-out;
+    opacity:0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+
+
+
+
+.endorsements .row {
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-evenly;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-left: 0;
+    background-color:transparent;
+}
+
+
+.service-cards .card:nth-child(odd){
+    transform: translate3d(-3000px, 0, 0);
+}
+
+.bounceInLeft {
+    -webkit-animation-name: bounceInLeft;
+    animation-name: bounceInLeft;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+.service-cards .card:nth-child(even){
+    transform: translate3d(3000px, 0, 0);
+}
+
+.bounceInRight {
+    -webkit-animation-name: bounceInRight;
+    animation-name: bounceInRight;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+/*
+* Footer
+*/
+.mastfoot{
+    background-color: rgba(0, 0, 255, 0.75);
+    padding: 1em 2em;
+
+}
 a.card:hover,a.card:focus{
     color: none;
 }
@@ -133,3 +445,89 @@ a.card{
     min-height: 400px;
 }
 
+/*
+* Doctor Dashboad
+*/
+.docHeader{
+    background-color: rgba(127,127,127,0.25);
+    text-align: center;
+    padding: 3em 0;
+    color: black;
+    border-bottom-left-radius: 50% 30%;
+    border-bottom-right-radius: 50% 30%;
+}
+.patientHeader{
+    background-color: rgba(127,127,127,0.25);
+    text-align: center;
+    padding: 3em 0;
+    border-bottom-left-radius: 0% 0%;
+    border-bottom-right-radius: 0% 0%;
+}
+.patientHeader h1{
+    color: black;
+}
+.docHeader h1{
+    color: black;
+    margin-bottom: 0;
+}
+
+.mainContent.docContent,.mainContent.patientContent{
+    padding: 2.5em;
+}
+
+.appointments .card,.recur-patients .card,.upcoming-appointments .card{
+    background-color: transparent;
+    color: black;
+    flex-direction: column;
+    border-radius: 50px;
+}
+.upcoming-appointments .card,.labReports .card{
+    background-color: rgba(255,255,255,0.75);
+}
+.appointments,.recur-patients,.upcoming-appointments{
+    margin-left: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+.appointment-content,.recur-patient-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em 1em 2em;
+}
+.appointment-text,.recur-patient-text{
+    margin-bottom: 2em;
+}
+.appointments h3,.recur-patients h3,.upcoming-appointments h3{
+    background-color: rgba(0, 0, 255, 0.4);
+    padding: 1em;
+    color: white;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+.docContent h2,.patientContent h2{
+    background-color: rgba(0, 0, 255, 0.5);
+    color: black;
+    border-radius: 0 50px 50px 0;
+
+    padding: 0.75em;
+}
+.patientContent article {
+    width: 100%;
+}
+
+.medical-report{
+    background-color: rgba(255,255,255,0.75);
+    padding: 2.5em;
+    margin:  2em;  
+}
+.patientContent .actionable{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*
+*Patient Styles
+*/

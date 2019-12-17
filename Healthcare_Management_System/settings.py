@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'doctor.apps.DoctorConfig',
     'patient.apps.PatientConfig',
     'helping_staff.apps.HelpingStaffConfig',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+AUTH_USER_MODEL = 'main.User'

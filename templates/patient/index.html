@@ -1,63 +1,102 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="patientPage">
+<div class="patientHeader">
+    <h1>Mr. John Doe's Dashboard</h1>
+</div>
 
-<article class="content patient-index">
-    <section class="upcoming-appointments">
-        <!-- Display only appointments within 3 days -->
-        <div class="card appointment">
-            <!-- Doctor's image goes here -->
-            <img href="https://via.placeholder.com/200" class="doctor-img"></img>
-            <div class="appointment-excerpt">
+<div class="mainContent patientContent">
+    {% include 'partials/_aside.html' %}
+
+    <article>
+        <h2>Upcoming Appointments</h2>
+        <section class="cards upcoming-appointments">
+            <!-- Display only appointments within 3 days -->
+            <div class="card appointment">
+                <h3>Doctor's Name: John Smith</h3>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <p>Doctor's Experise: Anorexia</p>
+                        <p>Ailment Notes: Complaints of being overly skinny</p>
+                        <span>Time and Date: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card appointment">
                 <h3>Doctor's Name: John Doe</h3>
-                <p>Doctor's Expertise: Surgeon</p>
-                <p>Ailment Notes: Complaints of being overly skinny</p>
-                <span>Time and Date: 25th Dec 2019, 15:20</span>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <p>Doctor's Experise: Complaints of being overly skinny</p>
+                        <p>Ailment Notes: Complaints of being overly skinny</p>
+                        <span>Time and Date: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card appointment">
-            <!-- Doctor's image goes here -->
-            <img href="https://via.placeholder.com/200" class="doctor-img"></img>
-            <div class="appointment-excerpt">
+            <div class="card appointment">
                 <h3>Doctor's Name: John Doe</h3>
-                <p>Doctor's Expertise: Surgeon</p>
-                <p>Ailment Notes: Complaints of being overly skinny</p>
-                <span>Time and Date: 25th Dec 2019, 15:20</span>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <p>Doctor's Experise: Complaints of being overly skinny</p>
+                        <p>Ailment Notes: Complaints of being overly skinny</p>
+                        <span>Time and Date: 25th Dec 2019, 15:20</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card appointment">
-            <!-- Doctor's image goes here -->
-            <img href="https://via.placeholder.com/200" class="doctor-img"></img>
-            <div class="appointment-excerpt">
-                <h3>Doctor's Name: John Doe</h3>
-                <p>Doctor's Expertise: Surgeon</p>
-                <p>Ailment Notes: Complaints of being overly skinny</p>
-                <span>Time and Date: 25th Dec 2019, 15:20</span>
+        </section>
+        <h2>Medical History</h2>
+        <section class="medical-report">
+            <div class="med-report">
+                
             </div>
-        </div>
-    </section>
-    <section class="medical-report">
-        <div class="med-report">
-            The report in HTML brought in from the database goes here
-        </div>
-        <button class="download-report">Download PDF</button>
-    </section>
-    <section class="lab-reports">
-        <a href="#" class="card lab-report">
-            <img href="https://via.placeholder.com/200" class="patient-img"></img>
-            <div class="appointment-content">
-                <h3>Test Name: John Doe</span>
-                <span>Date of Test: 25th Dec 2019</span>
+            <button class="btn btn-danger download-report">Download PDF</button>
+        </section>
+        <h2>Lab Reports</h2>
+        <section class="cards appointments labReports">
+            <div class="card appointment labAppointment">
+                <h3>Test Name: Diarrahea</h3>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <span>Date of Test: 25th Dec 2019</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
             </div>
-        </a>
-        <a href="#" class="card lab-report">
-            <img href="https://via.placeholder.com/200" class="patient-img"></img>
-            <div class="appointment-content">
-                <h3>Test Name: Diarrahea</span>
-                <span>Date of Test: 25th Dec 2019</span>
+            <div class="card appointment labAppointment">
+                <h3>Test Name: Diarrahea</h3>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <span>Date of Test: 25th Dec 2019</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show Report</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
             </div>
-        </a>
-    </section>
-</article>
+        </section>
+    </article>
+</div>
+</div>
+<script>
+    window.onload = function(){
+        $('.patientHeader').addClass('roundCorners');
+    }
+</script>
 
 {% endblock %}
