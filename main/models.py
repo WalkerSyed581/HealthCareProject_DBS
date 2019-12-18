@@ -64,7 +64,7 @@ class Doctor(Staff):
         verbose_name_plural = "Doctors"
 
 class SupportGroupConductor(Staff):
-    conducts = models.ManyToManyField('Patient', through='SupportGroup')
+    conducts = models.ManyToManyField('SupportGroup')
 
     class Meta:
         verbose_name = "Support Group Conductor"
@@ -75,6 +75,7 @@ class HelpingStaff(Staff):
     '''
     WARD_STAFF = 'ws'
     LAB_STAFF = 'ls'
+    RECEPTIONIST = 'rc'
     NONE = 'n'
 
     roles = [
@@ -203,7 +204,7 @@ class SupportGroup(models.Model):
     description = models.TextField(max_length=1000, null=True)
 
     support_group_conductor = models.ForeignKey(SupportGroupConductor, on_delete=models.CASCADE)
-    members = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    members = models.ManyToManyField(Patient)
 
     class Meta:
         verbose_name = "Support Group"

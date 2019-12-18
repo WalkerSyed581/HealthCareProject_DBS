@@ -7,7 +7,8 @@
 
 <form action="" method="POST" id="login-form">
     {% csrf_token %}
-    <div class="form-group">
+    {{ form }}
+    <!-- <div class="form-group">
       <label for="loginID">Email address</label>
       <input type="email" class="form-control" id="loginID" aria-describedby="emailHelp">
     </div>
@@ -18,7 +19,7 @@
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="signedIn">
       <label class="form-check-label" for="signedIn">Keep me signed In</label>
-    </div>
+    </div> -->
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
