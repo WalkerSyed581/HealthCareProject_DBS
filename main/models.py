@@ -64,7 +64,7 @@ class Doctor(Staff):
         verbose_name_plural = "Doctors"
 
 class SupportGroupConductor(Staff):
-    conducts = models.ManyToManyField('SupportGroup')
+    
 
     class Meta:
         verbose_name = "Support Group Conductor"
@@ -198,13 +198,16 @@ class SupportGroup(models.Model):
         (SUNDAY, "Sunday"),
     ]
 
-    participants = models.PositiveIntegerField(default=0)
+    name = models.CharField(max_length=50, default="Support Group Generic")
     timing = models.TimeField()
     day = models.CharField(max_length=3, choices=days, default=MONDAY)
     description = models.TextField(max_length=1000, null=True)
 
-    support_group_conductor = models.ForeignKey(SupportGroupConductor, on_delete=models.CASCADE)
+    conducted_by = models.ManyToManyField(SupportGroupConductor)
     members = models.ManyToManyField(Patient)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = "Support Group"

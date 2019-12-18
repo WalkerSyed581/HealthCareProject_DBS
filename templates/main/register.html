@@ -6,7 +6,10 @@
 {% block content %}
 
 <form action="" method="POST" id="register-form">
-    <div class="form-group">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!-- <div class="form-group">
       <label for="name-field">Name</label>
       <input type="text" class="form-control" id="name-field">
     </div>
@@ -86,7 +89,7 @@
       <label for="prescriptions">Prescriptions</label>
       <input type="text" class="form-control" id="prescriptions">
     </div>
-  </div>
+  </div> -->
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <script>
