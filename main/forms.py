@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import User, Patient
+from django.contrib import messages
 
 class CustomUserCreationForm(UserCreationForm):
 
@@ -21,4 +22,4 @@ class PatientRegistrationForm(forms.ModelForm):
 
         fields = ['email', 'first_name', 'last_name',
                  'password', 'gender', 'phone', 'age',
-                 'cnic', 'emergency_contact']
+                 'cnic', 'emergency_contact',]

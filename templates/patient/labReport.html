@@ -2,9 +2,13 @@
 
 {% block content %}
 
+{% include 'partials/_header.html' %}
+
 <article class="lab-test">
     <div class="lab-report">
-        <!-- The report in HTML brought in from the database goes here -->
+        {% autoescape off %}
+            {{ labReports.text|safe }}
+        {% endautoescape %}
     </div>
     <button class="btn btn-danger download-report">Download PDF</button>
 </article>

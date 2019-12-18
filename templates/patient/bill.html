@@ -1,34 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<article class="content bill-content">
-    <img href="https://via.placeholder.com/200" class="patient-img"></img>
-    <p>Patient's Name : John Doe</p>
-    <p>Payment Method : Cash</p>
-    <p>Payment Status : Unpaid/Remaining/Paid</p>
-    <ul id="fees">
-        <li class="doctor-fee">
-            Doctor Filaana Fee: 1000 
-        </li>
-        <li class="room-fee">
-            Room 37 Fee: 1000 
-        </li>
-        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <li class="prescription-fee">
-                Prescription Fee:  1000 
+{% include 'partials/_header.html' %}
+<div class="patientPage billPage">
+    <div class="patientHeader">
+        <h1>{{patient.first_name}} > {{patient.last_name}}'s Dashboard</h1>
+    </div>
+    <article class="content billContent">
+        <p>Patient's Name : John Doe</p>
+        <p>Payment Method : Cash</p>
+        <p>Payment Status : Unpaid/Remaining/Paid</p>
+        <ul id="fees">
+            <li class="doctor-fee">
+                Doctor Filaana Fee: 1000 
             </li>
-        </a>
-        <ul class="collapse" id="collapseExample">
-            <li>
-                Midazolam Fee: 500
+            <li class="room-fee">
+                Room 37 Fee: 1000 
             </li>
-            <li>
-                Brufen Fee: 500
+            <li class="dropright">
+                <a href="#" class= "dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prescription Fee: 1000</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li class="dropdown-item"><a href="#">Midazolam : 500</a></li>
+                    <li class="dropdown-item"><a href="#">Brufen : 500</a></li>
+                </ul>
+            </li>
+            <li class="total-fee">
+                Total: 3000
             </li>
         </ul>
-        <li class="total-fee">
-            Total: 3000
-        </li>
-    </ul>
-</article>
+    </article>
+</div>
 {% endblock %}

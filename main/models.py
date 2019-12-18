@@ -55,7 +55,7 @@ class Doctor(Staff):
     Doctor Class
     '''
     specialization = models.CharField(max_length=100, null=True)
-    
+    fee = models.PositiveIntegerField(default=0)
     starting_time = models.TimeField()
     end_time = models.TimeField()
 
@@ -109,6 +109,9 @@ class Appointment(models.Model):
 
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.patient.first_name + " Appointment" + self.time.__str__()
+
     class meta:
         abstract = True
         verbose_name = "Appointment"
@@ -151,6 +154,9 @@ class Prescription(models.Model):
     conditions = models.TextField(max_length=500, null=True)
     notes = models.TextField(max_length=500, null=True)
 
+    def __str__(self):
+        return self.appointment.__str__() + " Prescription"
+
     class Meta:
         verbose_name = "Prescription"
 
@@ -158,8 +164,8 @@ class Ward(models.Model):
     
     capacity = models.PositiveIntegerField(default=1)
 
-    # def __str__(self):
-    #     return "Room {}".format(self.id)
+    def __str__(self):
+        return "Ward {}".format(self.id)
 
     class Meta:
         verbose_name = "Ward"
@@ -175,6 +181,10 @@ class Admission(models.Model):
 
     number_of_days = models.PositiveIntegerField(default=1)
     discharged = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.patient.__str__() + " admission"
+
 
     class Meta:
         verbose_name = "Admission"
@@ -216,12 +226,12 @@ class Bill(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     doctor_appointment = models.ForeignKey(DoctorAppointment, on_delete=models.CASCADE, null=True)
     lab_appointment = models.ForeignKey(LabAppointment, on_delete=models.CASCADE, null=True)
-    addmission = models.ForeignKey(Admission, on_delete=models.CASCADE, null=True)
+    admission = models.ForeignKey(Admission, on_delete=models.CASCADE, null=True)
 
-    @property
-    def total(self):
-        "Returns the person's full name."
-        # return self.doctor_appointment.doc
+
+
+    def calculate_fee(self):
+        pass
 
     class Meta:
         verbose_name = "Bill"
@@ -230,7 +240,11 @@ class LabTest(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=300)
     price = models.PositiveIntegerField(default=0)
-
+    
+    
+    def __str__(self):
+        return self.name
+    
     class Meta:
         verbose_name = "Lab Test"
 
@@ -240,7 +254,10 @@ class Service(models.Model):
 
     description = models.TextField(max_length=1000)
 
-    picture = models.ImageField()
+    picture = models.ImageField(upload_to='static')
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = "Service"

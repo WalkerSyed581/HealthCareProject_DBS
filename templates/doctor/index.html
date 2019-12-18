@@ -4,73 +4,49 @@
 
 
 {% block content %}
+{% include 'partials/_header.html' %}
+
 <div class="docHeader">
-    <h1>Dr. John Smith's Dashboard</h1>
+    <h1>Dr. {{doctorName}}'s Dashboard</h1>
 </div>
 <div class="mainContent docContent">
     {% include 'partials/_aside_doctor.html' %}
 
     <article>
         <h2>Appointments</h2>
-        <section class="cards appointments">
-            <div class="card appointment">
-                <h3>Patient Name: John Doe</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <p>Ailment Notes: Complaints of being overly skinny</p>
-                        <span>Patient Age: 26</span>
-                        <span>Time and Date: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Show Patient Info</button>
-                    </div>
+        <section class="cards upcoming-appointments">
+            {% if docAppointments != null %}
+
+                {% for docAppointment in docAppointments%}
+                <div class="card appointment">
+                    {% for patient in patients %}
+                        {% if docAppointment.patient == patient.pk %}
+                            <h3>Patient's Name: {{patient.first_name}} > {{patient.last_name}}</h3>
+                            <div class="appointment-content">
+                                <div class="appointment-text">
+                                    <p>Ailment Notes: {{docAppointment.notes}}</p>
+                                    <span>Patient Age: {{patient.age}}</span>
+                                    <span>Time and Date: {{docAppointment.time}}</span>
+                                </div>
+                                <div class="actionable">
+                                    <button class="btn btn-danger">Show/Add Report</button>
+                                    <button class="btn btn-danger">Show Patient Info</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            </div>
-            <div class="card appointment">
-                <h3>Patient Name: John Doe</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <p>Ailment Notes: Complaints of being overly skinny</p>
-                        <span>Patient Age: 26</span>
-                        <span>Time and Date: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Show Patient Info</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card appointment">
-                <h3>Patient Name: John Doe</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <p>Ailment Notes: Complaints of being overly skinny</p>
-                        <span>Patient Age: 26</span>
-                        <span>Time and Date: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Show Patient Info</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card appointment">
-                <h3>Patient Name: John Doe</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <p>Ailment Notes: Complaints of being overly skinny</p>
-                        <span>Patient Age: 26</span>
-                        <span>Time and Date: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Show Patient Info</button>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
+            {% else %}
+                
+                <p>No Upcoming Appointments in the next 7 days</p>
+
+            {% endif %}
+            <a href="#" class="btn btn-danger addAppointment">Show All Appointments</a>
         </section>
-        <h2>Recurring Patients</h2>
+
+        
+        <!-- <h2>Recurring Patients</h2>
         <section class="cards recur-patients">
             <div href="#" class="card patient">
                 <h3>Patient Name: John Smith</h3>
@@ -104,7 +80,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
     </article>
 </div>
 {% endblock %}

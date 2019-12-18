@@ -158,10 +158,41 @@
 html,
 body {
     height: auto;
+    
 }
 
 body {
     color: #000;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between
+}
+main.loginPage {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../images/Stock2.jpg");
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
+    color: white;
+    background-size: cover;
+    height: 92vh;
+}
+#login-form{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2em;
+
+}
+#login-form .submitButton{
+    width: 25%;
+    align-self: flex-end;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
 }
 
 /* Links */
@@ -352,7 +383,7 @@ article.aboutUs{
     margin-bottom: 1em;
     background-color: rgba(0,0,0,0.5);
     color:white;
-    border-radius: 5%;
+    border-radius: 50px;
 }
 
 
@@ -472,7 +503,7 @@ a.card{
 }
 
 .mainContent.docContent,.mainContent.patientContent{
-    padding: 2.5em;
+    padding: 0 2.5em 2.5em;
 }
 
 .appointments .card,.recur-patients .card,.upcoming-appointments .card{
@@ -485,10 +516,14 @@ a.card{
     background-color: rgba(255,255,255,0.75);
 }
 .appointments,.recur-patients,.upcoming-appointments{
-    margin-left: 0.5em;
+    margin: 0 0 2em 0.5em;
     display: flex;
     flex-direction: column;
 }
+.addAppointment {
+    align-self: flex-end;
+}
+
 .appointment-content,.recur-patient-content{
     display: flex;
     flex-direction: column;
@@ -531,3 +566,21 @@ a.card{
 /*
 *Patient Styles
 */
+.patientPage > .btn.btn-danger {
+    margin: 2.5em 2.5em;
+    width: 93%;
+    /* margin-right: 2.5em; */
+}
+
+.patientPage.billPage .patientHeader{
+    margin-bottom: 2em;
+}
+
+.billContent{
+    padding: 2.5em;
+}
+
+#fees,#fees ul{
+    list-style-type: none;
+}
+

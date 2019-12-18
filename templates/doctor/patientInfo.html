@@ -2,60 +2,63 @@
 
 {% load static %}
 {% block content %}
+{% include 'partials/_header.html' %}
+
+<div class="docHeader">
+    <h1>{{doctorName}}'s Dashboard</h1>
+</div>
+
 
 <article>
     <section class="patient-personal-info">
-        <img src="https://via.placeholder.com/300">
         <table>
             <tr>
                 <th>Name</th>
-                <td>John Smith</td>
+                <td>{{patient.first_name}} > {{patient.last_name}}</td>
             </tr>
             <tr>
                 <th>Age</th>
-                <td>26</td>
+                <td>{{patient.age}}</td>
             </tr>
             <tr>
                 <th>Gender</th>
-                <td>Male</td>
+                <td>{{patient.gender}}</td>
             </tr>
             <tr>
                 <th>E-mail</th>
-                <td>john@example.com</td>
+                <td>{{patient.email}}</td>
             </tr>
             <tr>
                 <th>Contact Number</th>
-                <td>09141349012</td>
+                <td>{{patient.phone}}</td>
             </tr>
         </table>
     </section>
-    <table style="width:100%" class="patient-med-info">
-        <tr>
-            <th>Room No.</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Nurse/Ward Boy</th>
-            <td>John Doe</td>
-        </tr>
-        <tr>
-            <th>Appointment Time</th>
-            <td>25th Dec 2019,15:20</td>
-        </tr>
-        <tr>
-            <th>Previous Medical Conditions</th>
-            <td>Schizophrenia</td>
-        </tr>
-        <tr>
-            <th>Lab Tests (if any)</th>
-            <td><a href="#">Tests for this patients</a></td>
-        </tr>
-        <tr>
-            <th>Current Medical Report</th>
-            <td><a href="#">Report of this patients</a></td>
-        </tr>
+    <section class="medical-report">
+        {% if docAppointments != null %}
 
-      </table>
+            {% for docAppointment in docAppointments%}
+            <div class="card appointment">
+                <h3>Patient's Name: {patient.username}</h3>
+                <div class="appointment-content">
+                    <div class="appointment-text">
+                        <p>Ailment Notes: {{docAppointment.notes}}</p>
+                        <span>Patient Age: {{patient.age}}</span>
+                        <span>Time and Date: {{docAppointment.time}}</span>
+                    </div>
+                    <div class="actionable">
+                        <button class="btn btn-danger">Show/Add Report</button>
+                        <button class="btn btn-danger">Show Patient Info</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            
+            <p>No Upcoming Appointments in the next 7 days</p>
+
+        {% endif %}
+    </section>
 </article>
 
 {% endblock %}

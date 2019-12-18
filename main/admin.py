@@ -27,17 +27,4 @@ admin.site.register(DoctorAppointment)
 admin.site.register(LabTest)
 admin.site.register(Prescription)
 
-class MemberOption(admin.TabularInline):
-    model = Patient
-    extra = 1
-
-class ConductedBy(admin.TabularInline):
-    model = SupportGroupConductor
-    extra = 1
-
-class SupportGroupAdmin(admin.ModelAdmin):
-    fieldsets = [(None, {'fields': ['name']}),
-                 ('Timing', {'fields': ['timing', 'day', 'description'], 'classes': ['collapse']}), ]
-    inlines = [ConductedBy, MemberOption]
-
 admin.site.register(SupportGroup)

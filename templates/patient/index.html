@@ -1,95 +1,195 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'partials/_header.html' %}
+
 <div class="patientPage">
 <div class="patientHeader">
-    <h1>Mr. John Doe's Dashboard</h1>
+    <h1>Mr. {{patient.first_name}} > {{patient.last_name}}'s Dashboard</h1>
 </div>
+<a  href=" {% url 'patient:bill' patient.id %}" class="btn btn-danger">Show Bill</a>
 
 <div class="mainContent patientContent">
     {% include 'partials/_aside.html' %}
-
     <article>
-        <h2>Upcoming Appointments</h2>
+        <h2>Upcoming Doctor's Appointments</h2>
         <section class="cards upcoming-appointments">
-            <!-- Display only appointments within 3 days -->
-            <div class="card appointment">
-                <h3>Doctor's Name: John Smith</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <p>Doctor's Experise: Anorexia</p>
-                        <p>Ailment Notes: Complaints of being overly skinny</p>
-                        <span>Time and Date: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Cancel</button>
-                    </div>
+            {% if docAppointments != null %}
+
+                {% for docAppointment in docAppointments%}
+                <div class="card appointment">
+                    {% for doctor in doctors %}
+                        {% if docAppointment.doctor.id == doctor.id %}
+                            <h3>Doctor's Name: {{doctor.first_name}} {{doctor.last_name}}</h3>
+                            <div class="appointment-content">
+                                <div class="appointment-text">
+                                    <p>Doctor's Experise: {{doctor.specialization}}</p>
+                                    <p>Ailment Notes: {{docAppointment.notes}}</p>
+                                    <span>Time and Date: {{docAppointment.time}}</span>
+                                </div>
+                                <div class="actionable">
+                                    <button class="btn btn-danger">Show Report</button>
+                                    <button class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            </div>
-            <div class="card appointment">
-                <h3>Doctor's Name: John Doe</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <p>Doctor's Experise: Complaints of being overly skinny</p>
-                        <p>Ailment Notes: Complaints of being overly skinny</p>
-                        <span>Time and Date: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Cancel</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card appointment">
-                <h3>Doctor's Name: John Doe</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <p>Doctor's Experise: Complaints of being overly skinny</p>
-                        <p>Ailment Notes: Complaints of being overly skinny</p>
-                        <span>Time and Date: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <h2>Medical History</h2>
-        <section class="medical-report">
-            <div class="med-report">
+                {% endfor %}
+            {% else %}
                 
-            </div>
-            <button class="btn btn-danger download-report">Download PDF</button>
+                <p>No Upcoming Appointments within 3 days</p>
+            {% endif %}
+            <a href="{% url 'patient:getAppointment' patient.id %}" class="btn btn-danger addAppointment">Add Appointment</a>
         </section>
-        <h2>Lab Reports</h2>
-        <section class="cards appointments labReports">
-            <div class="card appointment labAppointment">
-                <h3>Test Name: Diarrahea</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <span>Date of Test: 25th Dec 2019</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Cancel</button>
-                    </div>
+
+        <h2>Upcoming Lab's Appointments</h2>
+        <section class="cards upcoming-appointments">
+            {% if labAppointments != null %}
+                {% for labAppointment in labAppointments%}
+                <div class="card appointment">
+                    {% for conductor in conductors %}
+                        {% if labAppointment.conducted_by.id == conductor.id %}
+                            <h3>Conductor's Name: {{conductor.first_name}} > {{conductor.last_name}}</h3>
+                            <div class="appointment-content">
+                                <div class="appointment-text">
+                                    <span>Time and Date: {{labAppointment.time}}</span>
+                                </div>
+                                <div class="actionable">
+                                    <button class="btn btn-danger">Show Report</button>
+                                    <button class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            </div>
-            <div class="card appointment labAppointment">
-                <h3>Test Name: Diarrahea</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <span>Date of Test: 25th Dec 2019</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show Report</button>
-                        <button class="btn btn-danger">Cancel</button>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
+            {% else %}
+                <p>No Upcoming Appointments within 3 days</p>
+            {% endif %}
+            <a href="#" class="btn btn-danger addAppointment">Add Appointment</a>
         </section>
+
+        <h2>Upcoming Support Groups</h2>
+        <section class="cards upcoming-appointments">
+            {% if labAppointments != null %}
+                {% for supportGroup in supportGroups%}
+                <div class="card appointment">
+                    {% for supportGroupConductor in supportGroupConductors %}
+                        {% if supportGroup.conducted_by.id == supportGroupConductor.id %}
+                            <h3>Support Group: {{supportGroup.name}}</h3>
+                            <div class="appointment-content">
+                                <div class="appointment-text">
+                                    <p>Conductor's Name: {{supportGroupConductor.first_name}} > {{supportGroupConductor.last_name}}</p>
+                                    <p>Day: {{supportGroup.day}}</p>
+                                    <span>Time and Date: {{supportGroup.timing}}</span>
+                                    <p>Day: {{supportGroup.description}}</p>
+                                </div>
+                                <div class="actionable">
+                                    <button class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+
+            {% else %}
+                <p>No Upcoming Appointments within 3 days</p>
+            {% endif %}
+            <a href="#" class="btn btn-danger addAppointment">Join Support Group</a>
+        </section>
+            
+        <h2>Current Prescriptions</h2>
+        <section class="cards upcoming-appointments">
+            {% if prescriptions != null %}
+                {% for prescription in prescriptions %}
+                <div class="card appointment">
+                    {% for docAppointment in docAppointments %}
+                        {% if docAppointment.id == prescription.appointment.id %}
+                            {% for doctor in doctors %}
+                                {% if doctor.id == docAppointment.doctor.id %}
+                                    <h3>Doctor's Name: {{doctor.first_name}}  {{doctor.last_name}}</h3>
+
+                                    <div class="appointment-content">
+                                        <div class="appointment-text">
+                                            <p>Condition: {{prescription.conditions}}</p>
+                                            <p>Prescription Notes: {{prescription.notes}}</p>
+                                            <span>Time and Date: {{docAppointment.time}}</span>
+                                            {% for drugs in drug %}
+                                                <div class="drugs">
+                                                    <p>Drug Name: {{drug.name}}</p>
+                                                    <p>Dose: {{drug.dose}}</p>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No Prescription Found</p>
+
+            {% endif %}
+        </section>
+    
+        <h2>Medical History</h2>
+        <section class="cards upcoming-appointments">
+            {% if docAppointments1 != null %}
+
+                {% for docAppointment in docAppointments1%}
+                <div class="card appointment">
+                    {% for doctor in doctors1 %}
+                        {% if docAppointment.doctor.id == doctor.id %}
+                            <h3>Doctor's Name: {{conductor.first_name}}  {{conductor.last_name}}</h3>
+                            <div class="appointment-content">
+                                <div class="appointment-text">
+                                    <p>Doctor's Experise: {{doctor.specialization}}</p>
+                                    <p>Ailment Notes: {{docAppointment.notes}}</p>
+                                    <span>Time and Date: {{docAppointment.time}}</span>
+                                </div>
+                                <div class="actionable">
+                                    <button class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            {% else %}
+                
+                <p>No Doctor Appointments</p>
+            {% endif %}
+        </section>
+        
+        <h2>Lab History</h2>
+        <section class="cards upcoming-appointments">
+            {% if labAppointments1 != null %}
+                {% for labAppointment in labAppointments1%}
+                <div class="card appointment">
+                    {% for conductor in conductors1 %}
+                        {% if labAppointment.conducted_by == conductor.pk %}
+                            <h3>Conductor's Name: {{conductor.first_name}} > {{conductor.last_name}}</h3>
+                            <div class="appointment-content">
+                                <div class="appointment-text">
+                                    <span>Time and Date: {{labAppointment.time}}</span>
+                                </div>
+                                <div class="actionable">
+                                    <a href="{% url 'patient:labReport' patient.id labAppointment.id %}" class="btn btn-danger">Show Report</a>
+                                    <button class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No Lab Appointments</p>
+            {% endif %}
+         </section>
     </article>
 </div>
 </div>

@@ -8,7 +8,7 @@
 <form action="" method="POST" id="register-form">
     
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form }}
     <!-- <div class="form-group">
       <label for="name-field">Name</label>
       <input type="text" class="form-control" id="name-field">
@@ -96,7 +96,6 @@
 checkbox = document.querySelector('#medicalHistoryBool');
 hiddenField = document.querySelector('#hidden-field');
       
-
 checkbox.addEventListener('click',function checkBoxClick(e){
   if(checkbox.checked == true){
     hiddenField.classList.remove("d-none");
