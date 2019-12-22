@@ -117,9 +117,9 @@ class Appointment(models.Model):
         verbose_name = "Appointment"
 
 class DoctorAppointment(Appointment):
-    fee = models.PositiveIntegerField(default=0)
+    
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-
+    
     class Meta:
         verbose_name = "Doctor Appointment"
 
