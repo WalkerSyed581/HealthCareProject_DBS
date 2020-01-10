@@ -158,42 +158,20 @@
 html,
 body {
     height: auto;
-    
-}
-
-body {
     color: #000;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     justify-content: space-between
 }
-main.loginPage {
-    display: flex;
-    flex-direction: column;
-    background-image: url("../images/Stock2.jpg");
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
-    color: white;
-    background-size: cover;
-    height: 92vh;
-}
-#login-form{
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 2em;
-
-}
-#login-form .submitButton{
-    width: 25%;
-    align-self: flex-end;
-}
 
 .form-group{
     display: flex;
     flex-direction: column;
 }
+
+
+
 
 /* Links */
 
@@ -217,8 +195,6 @@ h4{
     font-size: 1.25rem;
 }
 
-p.firstPara{
-}
 
 /*
 *
@@ -315,40 +291,7 @@ ul.dropdown-menu {
 .navbar-dark .navbar-nav .show>.nav-link {
     color: #fff;
 }
-/*
-* Main cover area
-*/
-.mid-cover{
-    background-image: url("../images/Stock2.jpg");
-    height: 100vh; 
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.7);
-    position: relative;
-}
 
-#call-to-action{
-    position: absolute;
-    top: 42%;
-    left: 36%;
-    color: white;
-}
-
-#call-to-action .btn{
-    border: 2px solid black;
-    background-color: transparent;
-    color: white;
-    border-radius: 25px 25px 25px 25px;
-    transition: all 0.5s ease-in;
-}
-
-#call-to-action .btn:hover,#call-to-action .btn:focus{
-    border: 2px solid white;
-    background-color: black;
-    color: white;
-}
 .masthead {
     margin-bottom: 0;
 }
@@ -356,16 +299,6 @@ ul.dropdown-menu {
 /*
 * Article Body
 */
-/* 
-article.homePage{
-    padding: 0 2em;
-    background-image: url(../images/hospitalIcons1.svg), url(../images/hospitalIcons2.svg),url(../images/hospitalIcons3.svg),url(../images/hospitalIcons4.svg),url(../images/hospitalIcons5.svg),url(../images/hospitalIcons6.svg),url(../images/hospitalIcons7.svg),url(../images/hospitalIcons8.svg);
-    background-attachment: fixed;
-    background-position: 50% 10%,73% 65%,30% 60%,50% 103%,-3% 5%,103% 5%,-3% 103%,101% 103%;
-    background-size: 300px,300px,300px,300px,150px,150px,150px,100px;
-    background-color: rgba(0,0,0,0.7);
-    background-repeat: no-repeat;
-} */
 
 article.aboutUs{
     padding: 1em 5em;
@@ -386,76 +319,6 @@ article.aboutUs{
     border-radius: 50px;
 }
 
-
-
-
-/*
-* Endorsements cards
-*/
-
-.homePage .endorsements{
-    background-color: black;
-    padding: 3.5em 0em;
-    margin: 2em 2em 0;
-}
-
-.endorsements .card{
-    margin-bottom: 1em;
-    background-color: transparent;
-    padding:0;
-    color:rgba(255,255,255,0.75);
-    border: 0.1em solid rgba(255,255,255,0.75);
-    
-}
-
-.endorsements .card .card-text{
-    transition: all 0.75s ease-in-out;
-    opacity:0;
-    max-height: 0;
-    overflow: hidden;
-}
-
-
-
-
-
-.endorsements .row {
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: space-evenly;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: 0;
-    margin-left: 0;
-    background-color:transparent;
-}
-
-
-.service-cards .card:nth-child(odd){
-    transform: translate3d(-3000px, 0, 0);
-}
-
-.bounceInLeft {
-    -webkit-animation-name: bounceInLeft;
-    animation-name: bounceInLeft;
-    animation-duration: 2s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-delay: 1s;
-}
-
-.service-cards .card:nth-child(even){
-    transform: translate3d(3000px, 0, 0);
-}
-
-.bounceInRight {
-    -webkit-animation-name: bounceInRight;
-    animation-name: bounceInRight;
-    animation-duration: 2s;
-    animation-delay: 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-}
 
 /*
 * Footer
