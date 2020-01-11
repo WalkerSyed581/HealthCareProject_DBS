@@ -31,7 +31,6 @@ def loginView(request):
             user = authenticate(request, username=login_detail['username'], password=login_detail['password'])
             if user is not None:
                 login(request, user)
-            print(type(user))
             try:
                 if (Doctor.objects.get(email=login_detail['username'])):
                     return redirect('doctor:index')

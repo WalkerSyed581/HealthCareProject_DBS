@@ -1,26 +1,38 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.utils import timezone
 from django.http import HttpResponseRedirect
+from datetime import datetime, timedelta
 
 from.forms import *
 from main.models import *
+from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 
 def index(request, patient_id):
+
     patient = Patient.objects.get(pk=patient_id)
 
+    request.session.set_expiry(0)
+
+    if request.user.is_anonymous:
+        return redirect('main:login')
+
+    if request.user.email != patient.email:
+        return HttpResponseRedirect(reverse('patient:index', args=(request.user.id,)))
+
+
     # add splice
-    docAppointments = DoctorAppointment.objects.filter(patient = patient_id).order_by('-time')
+    time_threshold = datetime.now()
+    docAppointments = DoctorAppointment.objects.filter(patient = patient_id)
 
-    # Solve this by adding timezone based query
-    docAppointments1 = DoctorAppointment.objects.filter(patient = patient_id)
-
+    docAppointments1 = DoctorAppointment.objects.filter(patient = patient_id,time__gte =  time_threshold)
 
     labAppointments = LabAppointment.objects.filter(patient = patient_id)
 
-    # Solve this by adding timezone based query
-    labAppointments1 = LabAppointment.objects.filter(patient = patient_id)
+    labAppointments1 = LabAppointment.objects.filter(patient = patient_id,time__gte =  time_threshold)
 
     doctors = Doctor.objects.filter(pk__in = docAppointments.values_list('doctor'))
     doctors1 = Doctor.objects.filter(pk__in = docAppointments1.values_list('doctor'))
@@ -28,20 +40,14 @@ def index(request, patient_id):
     conductors = HelpingStaff.objects.filter(pk__in = labAppointments.values_list('conducted_by'),role='ls')
     conductors1 = HelpingStaff.objects.filter(pk__in = labAppointments1.values_list('conducted_by'),role='ls')
 
-    prescriptions = Prescription.objects.filter(appointment__in = docAppointments1)
+    prescriptions = Prescription.objects.filter(appointment__in = docAppointments)
     drugs = Drug.objects.filter(prescription__in = prescriptions)
     supportGroups = SupportGroup.objects.filter(members = patient_id)
     supportGroupConductors = SupportGroupConductor.objects.filter(pk__in = supportGroups.values_list('conducted_by'))
     
-    print(patient.full_name)
-    print(docAppointments)
-
-    for docAppointment in docAppointments:
-        print(docAppointment.doctor.id)
+   
 
     
-    
-    print(prescriptions)
     context = {"patient" : patient,"docAppointments": docAppointments,
         "docAppointments1": docAppointments1,"labAppointments":labAppointments,
         "doctors":doctors,"doctors1":doctors1,"conductors":conductors,

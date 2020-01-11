@@ -2,32 +2,20 @@
 
 {% load static %}
 
+{% block style %} <link rel="stylesheet" href="{% static 'css/login.css' %}"> {% endblock %}
 
 {% block content %}
-<main>
-  {% include 'partials/_header.html' %}
+{% include 'partials/_header.html' %}
+
+<main class="register">
 
   <form action="" method="POST" id="register-form">
-      
+      <h1>Join Us</h1>
       {% csrf_token %}
       {{ form }}
       
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary submitButton">Submit</button>
   </form>
 </main>
 
-<script>
-checkbox = document.querySelector('#medicalHistoryBool');
-hiddenField = document.querySelector('#hidden-field');
-      
-checkbox.addEventListener('click',function checkBoxClick(e){
-  if(checkbox.checked == true){
-    hiddenField.classList.remove("d-none");
-    document.querySelector('#hidden-field input').setAttribute("required","");
-  } else {
-    hiddenField.classList.add("d-none");
-    document.querySelector('#hidden-field input').removeAttribute("required");
-  }
-},false)
-</script>
 {% endblock %}

@@ -1,4 +1,12 @@
  /*
+ * Variables
+ */
+ :root {
+    --main-bg-color: rgb(0,123,255);
+    --footer-bg-color: rgba(0,0,0);
+  }
+ 
+ /*
  * Animations
  */
  
@@ -58,13 +66,7 @@
     }
   }
   
-.roundCorners{
-  animation-name: roundCorners;
-  animation-duration: 0.25s;
-  animation-delay: 1s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-}
+
 
 
 @keyframes bounceInLeft {
@@ -150,7 +152,13 @@
     -webkit-animation-name: bounceInRight;
     animation-name: bounceInRight;
 }
-  
+.roundCorners{
+    animation-name: roundCorners;
+    animation-duration: 0.25s;
+    animation-delay: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
  /*
  * Base structure
  */
@@ -182,7 +190,7 @@ a:hover {
 }
 
 h1{
-    color: rgba(0, 0, 255, 0.75);
+    color: var(--main-bg-color);
     font-size: 3rem;
 }
 h2{
@@ -203,10 +211,6 @@ h4{
 #login-form{
  width: 25%;
 }
-#login-form label{
-
-}
-
 /*
 * Main Styles
 */
@@ -215,7 +219,7 @@ h4{
 }
 
 .mainContent aside {
-    background: rgba(0, 0, 255, 0.5);
+    background: var(--main-bg-color);
     padding: 4em;
 }
 
@@ -277,7 +281,8 @@ ul.dropdown-menu {
 */
 
 .navbar {
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    background-color: var(--main-bg-color);
 }
 
 .navbar-dark .navbar-nav .nav-link:focus,
@@ -301,7 +306,9 @@ ul.dropdown-menu {
 */
 
 article.aboutUs{
-    padding: 1em 5em;
+    padding: 1em 1em;
+    margin-left: 2em;
+    overflow: hidden;
 }
 
 
@@ -324,9 +331,9 @@ article.aboutUs{
 * Footer
 */
 .mastfoot{
-    background-color: rgba(0, 0, 255, 0.75);
+    background-color: var(--footer-bg-color);
     padding: 1em 2em;
-
+    color: white;
 }
 a.card:hover,a.card:focus{
     color: none;
@@ -340,110 +347,8 @@ a.card{
 }
 
 /*
-* Doctor Dashboad
+* Front Page Carousel
 */
-.docHeader{
-    background-color: rgba(127,127,127,0.25);
-    text-align: center;
-    padding: 3em 0;
-    color: black;
-    border-bottom-left-radius: 50% 30%;
-    border-bottom-right-radius: 50% 30%;
+.carousel-caption{
+    background: linear-gradient(90deg,transparent 10%,rgba(0,0,0,.5),transparent 90%);
 }
-.patientHeader{
-    background-color: rgba(127,127,127,0.25);
-    text-align: center;
-    padding: 3em 0;
-    border-bottom-left-radius: 0% 0%;
-    border-bottom-right-radius: 0% 0%;
-}
-.patientHeader h1{
-    color: black;
-}
-.docHeader h1{
-    color: black;
-    margin-bottom: 0;
-}
-
-.mainContent.docContent,.mainContent.patientContent{
-    padding: 0 2.5em 2.5em;
-}
-
-.appointments .card,.recur-patients .card,.upcoming-appointments .card{
-    background-color: transparent;
-    color: black;
-    flex-direction: column;
-    border-radius: 50px;
-}
-.upcoming-appointments .card,.labReports .card{
-    background-color: rgba(255,255,255,0.75);
-}
-.appointments,.recur-patients,.upcoming-appointments{
-    margin: 0 0 2em 0.5em;
-    display: flex;
-    flex-direction: column;
-}
-.addAppointment {
-    align-self: flex-end;
-}
-
-.appointment-content,.recur-patient-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1em 1em 2em;
-}
-.appointment-text,.recur-patient-text{
-    margin-bottom: 2em;
-}
-.appointments h3,.recur-patients h3,.upcoming-appointments h3{
-    background-color: rgba(0, 0, 255, 0.4);
-    padding: 1em;
-    color: white;
-    border-top-right-radius: 50px;
-    border-top-left-radius: 50px;
-}
-
-.docContent h2,.patientContent h2{
-    background-color: rgba(0, 0, 255, 0.5);
-    color: black;
-    border-radius: 0 50px 50px 0;
-
-    padding: 0.75em;
-}
-.patientContent article {
-    width: 100%;
-}
-
-.medical-report{
-    background-color: rgba(255,255,255,0.75);
-    padding: 2.5em;
-    margin:  2em;  
-}
-.patientContent .actionable{
-    display: flex;
-    justify-content: space-between;
-}
-
-/*
-*Patient Styles
-*/
-.patientPage > .btn.btn-danger {
-    margin: 2.5em 2.5em;
-    width: 93%;
-    /* margin-right: 2.5em; */
-}
-
-.patientPage.billPage .patientHeader{
-    margin-bottom: 2em;
-}
-
-.billContent{
-    padding: 2.5em;
-}
-
-#fees,#fees ul{
-    list-style-type: none;
-}
-

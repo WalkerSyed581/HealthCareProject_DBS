@@ -8,6 +8,7 @@
 <main class="loginPage">
   {% include 'partials/_header.html' %}
   <form action="" method="POST" id="login-form">
+      <h1>Login</h1>
       {% csrf_token %}
       {% for field in form%}
         <div class="form-group">
