@@ -8,57 +8,57 @@
     <h1>{{doctorName}}'s Dashboard</h1>
 </div>
 
+<div class="mainContent docContent">
+    {% include 'partials/_aside_doctor.html' %}
+    <article>
+        <section class="patient-personal-info">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>{{patient.first_name}}  {{patient.last_name}}</td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td>{{patient.age}}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{{patient.gender}}</td>
+                </tr>
+                <tr>
+                    <th>E-mail</th>
+                    <td>{{patient.email}}</td>
+                </tr>
+                <tr>
+                    <th>Contact Number</th>
+                    <td>{{patient.phone}}</td>
+                </tr>
+            </table>
+        </section>
+        <section class="medical-report">
+            {% if docAppointments != null %}
 
-<article>
-    <section class="patient-personal-info">
-        <table>
-            <tr>
-                <th>Name</th>
-                <td>{{patient.first_name}}  {{patient.last_name}}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>{{patient.age}}</td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td>{{patient.gender}}</td>
-            </tr>
-            <tr>
-                <th>E-mail</th>
-                <td>{{patient.email}}</td>
-            </tr>
-            <tr>
-                <th>Contact Number</th>
-                <td>{{patient.phone}}</td>
-            </tr>
-        </table>
-    </section>
-    <section class="medical-report">
-        {% if docAppointments != null %}
-
-            {% for docAppointment in docAppointments%}
-            <div class="card appointment">
-                <h3>Patient's Name: {patient.username}</h3>
-                <div class="appointment-content">
-                    <div class="appointment-text">
-                        <p>Ailment Notes: {{docAppointment.notes}}</p>
-                        <span>Patient Age: {{patient.age}}</span>
-                        <span>Time and Date: {{docAppointment.time}}</span>
-                    </div>
-                    <div class="actionable">
-                        <button class="btn btn-danger">Show/Add Report</button>
-                        <button class="btn btn-danger">Show Patient Info</button>
+                {% for docAppointment in docAppointments%}
+                <div class="card appointment">
+                    <h3>Patient's Name: {{patient.first_name}}  {{patient.last_name}}</h3>
+                    <div class="appointment-content">
+                        <div class="appointment-text">
+                            <p>Ailment Notes: {{docAppointment.notes}}</p>
+                            <span>Patient Age: {{patient.age}}</span>
+                            <span>Time and Date: {{docAppointment.time}}</span>
+                        </div>
+                        <div class="actionable">
+                            <button class="btn btn-danger">Show/Add Report</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
-        {% else %}
-            
-            <p>No Upcoming Appointments in the next 7 days</p>
+                {% endfor %}
+            {% else %}
+                
+                <p>No Previous Appointments found for this patient</p>
 
-        {% endif %}
-    </section>
-</article>
-
+            {% endif %}
+        </section>
+    </article>
+</div>
 {% endblock %}

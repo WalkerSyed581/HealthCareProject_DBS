@@ -125,7 +125,7 @@ class DoctorAppointment(Appointment):
 
 class LabAppointment(Appointment):
     conducted_by = models.ForeignKey(HelpingStaff, on_delete=models.CASCADE, null=True)
-    prescription = models.ForeignKey("Prescription", on_delete=models.CASCADE, null=True)
+    prescription = models.ForeignKey('Prescription', on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = "Lab Appointment"
@@ -212,6 +212,8 @@ class SupportGroup(models.Model):
     timing = models.TimeField()
     day = models.CharField(max_length=3, choices=days, default=MONDAY)
     description = models.TextField(max_length=1000, null=True)
+    fee = models.PositiveIntegerField(default=0)
+
 
     conducted_by = models.ManyToManyField(SupportGroupConductor)
     members = models.ManyToManyField(Patient)
@@ -230,8 +232,36 @@ class Bill(models.Model):
 
 
 
-    def calculate_fee(self):
-        pass
+    def calculate_fee(self,patient_id):
+        allDues = Bill.objects.filter(patient = patient_id)
+        docAppointments = DoctorAppointment.objects.filter(pk__in = allDues.values_list('doctor_appointment'))
+        doctors = Doctor.objects.filter(pk__in = docAppointments.values_list('doctor'))
+        doctorFee = 0
+        for docAppointment in docAppointments:
+            for doctor in doctors:
+                if docApppointment.doctor == doctor.id:
+                    doctorFee += doctor.fee
+
+        labAppopintments = LabAppointment.objects.filter(pk__in = allDues.values_list('lab_appointmnet'))
+        patientTests = Prescription.objects.values_list(tests,pk__in = labAppopintments.values_list('prescription'))
+        testFees = None
+        totalTestFee = 0
+        for patientTest in patientTests:
+            test = LabTest.objects.get(pk__in = patientTests)
+            testFees[test.name].append(test.fee)
+            totalTestFee += test.fee
+
+        supportGroupFees = SupportGroup.objects.filter(fee,members__id = patient_id)
+
+        totalSupportGroupFee = 0
+        for supportGroupFee in supportGroupFees:
+            totalSupportGroupFee += supportGroupFee
+
+        totalFee = doctorFee + totalTestFee + totalSupportGroupFee
+        
+        return {"doctorFee": doctorFee,"testFees":testFees,"totalTestFee":totalTestFee,"supportGroupFee":totalSupportGroupFee,"totalFee": totalFee}
+        
+
 
     class Meta:
         verbose_name = "Bill"
@@ -239,7 +269,7 @@ class Bill(models.Model):
 class LabTest(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=300)
-    price = models.PositiveIntegerField(default=0)
+    fee = models.PositiveIntegerField(default=0)
     
     
     def __str__(self):

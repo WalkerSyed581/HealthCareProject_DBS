@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="docHeader">
+    <h1>{{doctorName}}'s Dashboard</h1>
+</div>
+<div class="mainContent docContent">
+    {% include 'partials/_aside_doctor.html' %}
+    <article class="content appointment-content">
+
+        <section class="medical-report">
+            {% if labAppointments != null %}
+
+                {% for labAppointment in labAppointments %}
+                    
+                    <div class="card appointment">
+                        <h3>Patient's Name: {{patient.first_name}}  {{patient.last_name}}</h3>
+                        <div class="appointment-content">
+                            <div class="appointment-text">
+                                <p>Ailment Notes: {{docAppointment.notes}}</p>
+                                <span>Patient Age: {{patient.age}}</span>
+                                <span>Time and Date: {{docAppointment.time}}</span>
+                            </div>
+                            <div class="actionable">
+                                <button class="btn btn-danger">Show/Add Report</button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                
+                <p>No Previous Lab Reports found for this patient</p>
+
+            {% endif %}
+        </section>
+
+    </article>
+
+</div>
+{% endblock %}

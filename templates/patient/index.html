@@ -12,11 +12,12 @@
 <div class="patientHeader">
     <h1>Mr. {{patient.first_name}}  {{patient.last_name}}'s Dashboard</h1>
 </div>
-<a  href=" {% url 'patient:bill' patient.id %}" class="btn btn-danger">Show Bill</a>
 
 <div class="mainContent patientContent">
     {% include 'partials/_aside.html' %}
     <article>
+        <a  href=" {% url 'patient:bill' patient.id %}" class="btn btn-danger">Show Bill</a>
+
         <h2>Upcoming Doctor's Appointments</h2>
         <section class="cards upcoming-appointments">
             {% if docAppointments1 %}
@@ -155,9 +156,6 @@
                                     <p>Ailment Notes: {{docAppointment.notes}}</p>
                                     <span>Time and Date: {{docAppointment.time}}</span>
                                 </div>
-                                <div class="actionable">
-                                    <button class="btn btn-danger">Cancel</button>
-                                </div>
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -183,7 +181,6 @@
                                 </div>
                                 <div class="actionable">
                                     <a href="{% url 'patient:labReport' patient.id labAppointment.id %}" class="btn btn-danger">Show Report</a>
-                                    <button class="btn btn-danger">Cancel</button>
                                 </div>
                             </div>
                         {% endif %}

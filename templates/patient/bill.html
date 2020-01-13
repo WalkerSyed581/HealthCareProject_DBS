@@ -4,28 +4,32 @@
 {% include 'partials/_header.html' %}
 <div class="patientPage billPage">
     <div class="patientHeader">
-        <h1>{{patient.first_name}} > {{patient.last_name}}'s Dashboard</h1>
+        <h1>{{patient.first_name}}  {{patient.last_name}}'s Dashboard</h1>
     </div>
     <article class="content billContent">
-        <p>Patient's Name : John Doe</p>
+        <p>Patient's Name : {{patient.first_name}}  {{patient.last_name}}</p>
         <p>Payment Method : Cash</p>
         <p>Payment Status : Unpaid/Remaining/Paid</p>
         <ul id="fees">
             <li class="doctor-fee">
-                Doctor Filaana Fee: 1000 
+                Total fee of all appointments: {{fees.doctorFee}} 
             </li>
             <li class="room-fee">
-                Room 37 Fee: 1000 
+                Ward Fee: {{fees.wardFee}} 
+            </li>
+            <li>
+                Total Fee of Support Groups: {{fees.supportGroupFee}}
             </li>
             <li class="dropright">
-                <a href="#" class= "dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prescription Fee: 1000</a>
+                <a href="#" class= "dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Total Fee of Lab Tests: {{fees.totalTestFee}}</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li class="dropdown-item"><a href="#">Midazolam : 500</a></li>
-                    <li class="dropdown-item"><a href="#">Brufen : 500</a></li>
+                    {% for name,fee in fees.testFees.values() %}
+                        <li class="dropdown-item">{{name}} : {{fee}}</li>
+                    {% endfor %}
                 </ul>
             </li>
             <li class="total-fee">
-                Total: 3000
+                Total: {{fees.totalFee}}
             </li>
         </ul>
     </article>

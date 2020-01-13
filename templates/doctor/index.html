@@ -8,7 +8,7 @@
 {% include 'partials/_header.html' %}
 
 <div class="docHeader">
-    <h1>Dr. {{doctorName}}'s Dashboard</h1>
+    <h1>Dr. {{doctor.first_name}}  {{doctor.last_name}}'s Dashboard</h1>
 </div>
 <div class="mainContent docContent">
     {% include 'partials/_aside_doctor.html' %}
@@ -22,7 +22,7 @@
                 <div class="card appointment">
                     {% for patient in patients %}
                         {% if docAppointment.patient == patient.pk %}
-                            <h3>Patient's Name: {{patient.first_name}} > {{patient.last_name}}</h3>
+                            <h3>Patient's Name: {{patient.first_name}}  {{patient.last_name}}</h3>
                             <div class="appointment-content">
                                 <div class="appointment-text">
                                     <p>Ailment Notes: {{docAppointment.notes}}</p>
@@ -40,48 +40,13 @@
                 {% endfor %}
             {% else %}
                 
-                <p>No Upcoming Appointments in the next 7 days</p>
+                <p>No Upcoming Appointments</p>
 
             {% endif %}
-            <a href="#" class="btn btn-danger addAppointment">Show All Appointments</a>
+            <a href="#" class="btn btn-danger addAppointment">Show Previous Appointments</a>
         </section>
 
         
-        <!-- <h2>Recurring Patients</h2>
-        <section class="cards recur-patients">
-            <div href="#" class="card patient">
-                <h3>Patient Name: John Smith</h3>
-                <div class="recur-patient-content">
-                    <div class="recur-patient-text">
-                        <div class="medical-report">
-                            <p>Short Excerpt of Report: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint placeat, quas deleniti, rerum quam quia et reiciendis molestias minima tenetur inventore dignissimos earum? Ratione praesentium nulla voluptate fugiat illum cum.</p>
-                            <span>Current Condition: Loreamlkf aklajf</span>
-                        </div>
-                        <span>Patient Age: 56</span>
-                        <span>Next Appointment: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <a class="btn btn-danger" href="#">View Medical Report</a>
-                    </div>
-                </div>
-            </div>
-            <div href="#" class="card patient">
-                <h3>Patient Name: John Smith</h3>
-                <div class="recur-patient-content">
-                    <div class="recur-patient-text">
-                        <div class="medical-report">
-                            <p>Short Excerpt of Report: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint placeat, quas deleniti, rerum quam quia et reiciendis molestias minima tenetur inventore dignissimos earum? Ratione praesentium nulla voluptate fugiat illum cum.</p>
-                            <span>Current Condition: Loreamlkf aklajf</span>
-                        </div>
-                        <span>Patient Age: 56</span>
-                        <span>Next Appointment: 25th Dec 2019, 15:20</span>
-                    </div>
-                    <div class="actionable">
-                        <a class="btn btn-danger" href="#">View Medical Report</a>
-                    </div>
-                </div>
-            </div>
-        </section> -->
     </article>
 </div>
 {% endblock %}

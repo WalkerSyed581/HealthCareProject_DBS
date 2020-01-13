@@ -60,9 +60,10 @@ def bill(request, patient_id):
     patient = Patient.objects.get(patient_id)
     bill = Bill.objects.get(patient=patient_id)
     docAppointments = DoctorAppointment.objects.get(patient = patient_id)
+    fees = Bill.calculate_fee(patient_id)
 
-    context = {'patient':patient, 'bill':bill, 'docAppointments':docAppointments}
-    return render(request,'patient/bill.html')
+    context = {'patient':patient, 'bill':bill, 'docAppointments':docAppointments,"fees":fees}
+    return render(request,'patient/bill.html',context=context)
 
 def labReport(request, patient_id, lab_report_id):
     patient = Patient.objects.get(pk=patient_id)

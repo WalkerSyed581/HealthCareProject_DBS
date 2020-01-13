@@ -32,8 +32,10 @@ def loginView(request):
             if user is not None:
                 login(request, user)
             try:
-                if (Doctor.objects.get(email=login_detail['username'])):
-                    return redirect('doctor:index')
+                doctor = Doctor.objects.get(email=login_detail['username'])
+
+                return HttpResponseRedirect(reverse('doctor:index', args=(doctor.id,)))
+                    
             except ObjectDoesNotExist:
                 print("User is not a Doctor")
 

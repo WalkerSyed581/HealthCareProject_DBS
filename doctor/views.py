@@ -1,25 +1,53 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, reverse
+
+from django.http import HttpResponseRedirect
+from datetime import datetime, timedelta
+from main.models import *
+
 
 # Create your views here.
 
-def index(request):
-    # doctor = Doctor.objects.get(pk = doctor_id).full_name()
-    # docAppointments = DoctorAppointment.objects.get(doctor = doctor_id)
-    # patient = Patient.objects.get(pk = docAppointments.patient)
-    # context = {"patient" : patient,"docAppointments": docAppointments,"doctorName":doctor}
-    return render(request,'doctor/index.html')
+def index(request, doctor_id):
+    doctor = Doctor.objects.get(pk=doctor_id)
 
-def patientInfo(request):
+    request.session.set_expiry(0)
+
+    if request.user.is_anonymous:
+        return redirect('main:login')
+
+    if request.user.email != doctor.email:
+        return HttpResponseRedirect(reverse('doctor:index', args=(request.user.id,)))
+
+    time_threshold = datetime.now()
+
+    patient = None
+    docAppointments = None
+    try:
+        docAppointments = DoctorAppointment.objects.get(doctor = doctor_id,time__gte = time_threshold).order_by('-time')
+        patient = Patient.objects.get(pk = docAppointments.patient)
+    except:
+        pass
+    
+    context = {"patient" : patient,"docAppointments": docAppointments,"doctor":doctor}
+    return render(request,'doctor/index.html',context)
+
+def patientInfo(request,doctor_id,patient_id):
     # Display old Appointments
-    # docAppointments = DoctorAppointment.objects.get(doctor = doctor_id)
+    time_threshold = datetime.now()
+    docAppointments = DoctorAppointment.objects.get(patient = patient_id,time__lte = time_threshold)
 
-    # doctor = Doctor.objects.get(pk = doctor_id).full_name()
-    # patient = Patient.objects.get(pk = patient_id)
-    # context = {"patient" : patient,"docAppointments":docAppointments,"doctorName": doctor}
-    return render(request,'doctor/patientInfo.html')
+    doctor = Doctor.objects.get(pk = doctor_id).full_name()
+    patient = Patient.objects.get(pk = patient_id)
+    context = {"patient" : patient,"docAppointments":docAppointments,"doctorName": doctor}
+    return render(request,'doctor/patientInfo.html',context)
 
-def appointmentReport(request):
-    # labReport = LabReport.objects.get(appointment = appointment_id)
-    # context = {"labReport" : labReport}
-    return render(request,'doctor/appointmentReport.html')
+def labReports(request,doctor_id,patient_id,appointment_id):
+
+    prescriptions = Prescription.objects.get(appointment = appointment_id)
+    labAppointments = LabAppointment.objects.filter(prescriptions__in = prescriptions.id)
+    tests = LabTest.objects.filter(pk__in = prescriptions.values_list('tests'))
+    doctor = Doctor.objects.get(pk = doctor_id).full_name()
+    patient = Patient.objects.get(pk = patient_id)
+    context = {"patient" : patient,"doctorName": doctor,"tests":tests,"prescriptions":prescriptions,"labAppointments":labAppointments,"tests":tests}
+    return render(request,'doctor/appointmentReport.html',context)
 
