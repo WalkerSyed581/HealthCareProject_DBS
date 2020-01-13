@@ -24,5 +24,5 @@ urlpatterns = [
     path('<int:patient_id>/bill/', views.bill, name='bill'),
     path('<int:patient_id>/<int:lab_report_id>/labReport/', views.labReport, name='labReport'),
     path('<int:patient_id>/getAppointment', views.getAppointment, name='getAppointment'),
-    # path('<int:patient_id>/joinSupportGroup', views.joinSupportGroup, name='joinSupportGroup'),
+    path('<int:patient_id>/joinSupportGroup', views.joinSupportGroup, name='joinSupportGroup'),
 ]

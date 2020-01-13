@@ -126,7 +126,8 @@ class DoctorAppointment(Appointment):
 class LabAppointment(Appointment):
     conducted_by = models.ForeignKey(HelpingStaff, on_delete=models.CASCADE, null=True)
     prescription = models.ForeignKey('Prescription', on_delete=models.CASCADE, null=True)
-
+    test_id = models.ForeignKey('LabTest',on_delete=models.CASCADE,null=True)
+    
     class Meta:
         verbose_name = "Lab Appointment"
 

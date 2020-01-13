@@ -42,12 +42,13 @@ def patientInfo(request,doctor_id,patient_id):
     return render(request,'doctor/patientInfo.html',context)
 
 def labReports(request,doctor_id,patient_id,appointment_id):
-
     prescriptions = Prescription.objects.get(appointment = appointment_id)
     labAppointments = LabAppointment.objects.filter(prescriptions__in = prescriptions.id)
-    tests = LabTest.objects.filter(pk__in = prescriptions.values_list('tests'))
+    labReports = LabReport.objects.filter(appointment__in = labAppointments.values_list('id'))
+    conductors = HelpingStaff.objects.filter(pk__in = labAppointments.values_list('conducted_by'),role='ls')
+    tests = LabTest.objects.filter(pk__in = labAppointments.values_list('test_id'))
     doctor = Doctor.objects.get(pk = doctor_id).full_name()
     patient = Patient.objects.get(pk = patient_id)
-    context = {"patient" : patient,"doctorName": doctor,"tests":tests,"prescriptions":prescriptions,"labAppointments":labAppointments,"tests":tests}
+    context = {"patient" : patient,"doctorName": doctor,"tests":tests,"prescriptions":prescriptions,"labAppointments":labAppointments,"tests":tests,"conductors":conductors,"labReports":labReports}
     return render(request,'doctor/appointmentReport.html',context)
 

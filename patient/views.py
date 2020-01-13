@@ -89,3 +89,19 @@ def getAppointment(request, patient_id):
         form = MakeAppointmentForm()
         
     return render(request, 'patient/getData.html', {'form' : form})
+
+
+def joinSupportGroup(request, patient_id):
+    if request.method == 'POST':
+        form = MakeAppointmentForm(request.POST)
+        if form.is_valid():
+            userObj = form.cleaned_data
+            
+            DoctorAppointment.objects.create(patient=patient_id, time=timezone.datetime(), cancelled=False,**userObj)
+
+            return HttpResponseRedirect(reverse('patient:index', args=(patient_id,)))
+    
+    else:
+        form = MakeAppointmentForm()
+        
+    return render(request, 'patient/getData.html', {'form' : form})
