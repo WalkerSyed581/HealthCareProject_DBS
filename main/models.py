@@ -216,7 +216,7 @@ class SupportGroup(models.Model):
     fee = models.PositiveIntegerField(default=0)
 
 
-    conducted_by = models.ManyToManyField(SupportGroupConductor)
+    conducted_by = models.ForeignKey(SupportGroupConductor,on_delete=models.SET_NULL,null=True)
     members = models.ManyToManyField(Patient)
 
     def __str__(self):

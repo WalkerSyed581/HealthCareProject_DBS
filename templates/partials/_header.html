@@ -24,7 +24,18 @@
 					</ul>
 				  </div>
 			</div>
-			<button class="btn btn-danger" type="button">Log Out</button>
+			<a class="btn btn-danger logOut" href="#" >Log Out</a>
 		</nav>
 	</div>
 </header>
+<script>
+    $(function () {
+		$(".logOut").click(function () {
+			$.ajax({
+				url: '/logout',
+				type: 'get',
+				dataType: 'json'
+			});
+		});
+	});
+</script>

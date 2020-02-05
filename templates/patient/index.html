@@ -14,14 +14,13 @@
 </div>
 
 <div class="mainContent patientContent">
-    {% include 'partials/_aside.html' %}
     <article>
         <a  href=" {% url 'patient:bill' patient.id %}" class="btn btn-danger">Show Bill</a>
 
         <h2>Upcoming Doctor's Appointments</h2>
         <section class="cards upcoming-appointments">
+            {% with slug='doctor' %}
             {% if docAppointments1 %}
-
                 {% for docAppointment in docAppointments1%}
                 <div class="card appointment">
                     {% for doctor in doctors1 %}
@@ -34,8 +33,7 @@
                                     <span>Time and Date: {{docAppointment.time}}</span>
                                 </div>
                                 <div class="actionable">
-                                    <button class="btn btn-danger">Show Report</button>
-                                    <button class="btn btn-danger">Cancel</button>
+                                    <a class="btn btn-danger" href="{% url 'patient:cancelAppointment' patient.id docAppointment.id slug %}">Cancel</a>
                                 </div>
                             </div>
                         {% endif %}
@@ -45,24 +43,25 @@
             {% else %}
                 <p>No Upcoming Appointments</p>
             {% endif %}
+            {% endwith %}
             <a href="{% url 'patient:getAppointment' patient.id %}" class="btn btn-danger addAppointment">Add Appointment</a>
         </section>
 
         <h2>Upcoming Lab's Appointments</h2>
         <section class="cards upcoming-appointments">
+            {% with slug='lab' %}
             {% if labAppointments1 %}
                 {% for labAppointment in labAppointments1%}
                 <div class="card appointment">
                     {% for conductor in conductors1 %}
                         {% if labAppointment.conducted_by.id == conductor.id %}
-                            <h3>Conductor's Name: {{conductor.first_name}} > {{conductor.last_name}}</h3>
+                            <h3>Conductor's Name: {{conductor.first_name}} {{conductor.last_name}}</h3>
                             <div class="appointment-content">
                                 <div class="appointment-text">
                                     <span>Time and Date: {{labAppointment.time}}</span>
                                 </div>
                                 <div class="actionable">
-                                    <button class="btn btn-danger">Show Report</button>
-                                    <button class="btn btn-danger">Cancel</button>
+                                    <a class="btn btn-danger" href="{% url 'patient:cancelAppointment' patient.id labAppointment.id slug %}">Cancel</a>
                                 </div>
                             </div>
                         {% endif %}
@@ -72,11 +71,12 @@
             {% else %}
                 <p>No Upcoming Lab Appointments</p>
             {% endif %}
-            <a href="#" class="btn btn-danger addAppointment">Add Appointment</a>
+            {% endwith %}
         </section>
 
         <h2>Support Groups</h2>
         <section class="cards upcoming-appointments">
+            {% with slug='support' %}
             {% if supportGroups %}
                 {% for supportGroup in supportGroups%}
                 <div class="card appointment">
@@ -85,13 +85,13 @@
                             <h3>Support Group: {{supportGroup.name}}</h3>
                             <div class="appointment-content">
                                 <div class="appointment-text">
-                                    <p>Conductor's Name: {{supportGroupConductor.first_name}} > {{supportGroupConductor.last_name}}</p>
+                                    <p>Conductor's Name: {{supportGroupConductor.first_name}} {{supportGroupConductor.last_name}}</p>
                                     <p>Day: {{supportGroup.day}}</p>
                                     <span>Time and Date: {{supportGroup.timing}}</span>
                                     <p>Day: {{supportGroup.description}}</p>
                                 </div>
                                 <div class="actionable">
-                                    <button class="btn btn-danger">Cancel</button>
+                                    <a class="btn btn-danger" href="{% url 'patient:cancelAppointment' patient.id supportGroup.id slug %}">Cancel</a>
                                 </div>
                             </div>
                         {% endif %}
@@ -102,7 +102,8 @@
             {% else %}
                 <p>You have not enrolled in any Support Group</p>
             {% endif %}
-            <a href="#" class="btn btn-danger addAppointment">Join Support Group</a>
+            {% endwith %}
+            <a href="{% url 'patient:showSupportGroups' patient.id %}" class="btn btn-danger addAppointment">Join Support Group</a>
         </section>
             
         <h2>Current Prescriptions</h2>
@@ -119,9 +120,7 @@
                                     <div class="appointment-content">
                                         <div class="appointment-text">
                                             <p>Condition: {{prescription.conditions}}</p>
-                                            <p>Prescription Notes: {{prescription.notes}}</p>
-                                            <span>Time and Date: {{docAppointment.time}}</span>
-                                            {% for drugs in drug %}
+                                            {% for drug in drugs %}
                                                 <div class="drugs">
                                                     <p>Drug Name: {{drug.name}}</p>
                                                     <p>Dose: {{drug.dose}}</p>
@@ -198,6 +197,7 @@
     window.onload = function(){
         $('.patientHeader').addClass('roundCorners');
     }
+
 </script>
 
 {% endblock %}

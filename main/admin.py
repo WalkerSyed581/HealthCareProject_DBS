@@ -28,3 +28,6 @@ admin.site.register(LabTest)
 admin.site.register(Prescription)
 
 admin.site.register(SupportGroup)
+
+
+admin.site.register(Drug)

@@ -7,6 +7,9 @@ from django import forms
 
 from .models import User, Doctor, Patient, HelpingStaff, Service, SupportGroupConductor
 from .forms import PatientRegistrationForm
+
+
+
 # Create your views here.
 
 def index(request):
@@ -66,9 +69,50 @@ def loginView(request):
                 print("User is not an Admin")
             
             return redirect('main:index')
+    elif request.user.is_authenticated:
+        try:
+            doctor = Doctor.objects.get(email=request.user.email)
+
+            return HttpResponseRedirect(reverse('doctor:index', args=(doctor.id,)))
+                
+        except ObjectDoesNotExist:
+            print("User is not a Doctor")
+
+        try:
+            patient = Patient.objects.get(email=request.user.email)
+
+            return HttpResponseRedirect(reverse('patient:index', args=(patient.id,)))
+        except ObjectDoesNotExist:
+            print("User is not a Patient")
+
+        try:
+            if (HelpingStaff.objects.get(email=login_detail['username'])):
+                return redirect('helping_staff:index')
+        except ObjectDoesNotExist:
+            print("User is not a Helper")
+
+        try:
+            if (SupportGroupConductor.objects.get(email=login_detail['username'])):
+                return redirect('helping_staff:index')
+        except ObjectDoesNotExist:
+            print("User is not a Support Group Conductor")
+
+        try:
+            if (User.objects.get(email=request.user.email).is_superuser 
+                or User.objects.get(email=request.user.email).is_staff):
+                return redirect('/admin')
+        except ObjectDoesNotExist:
+            print("User is not an Admin")
+        
+        form=AuthenticationForm()   
     else:
         form = AuthenticationForm()
     return render(request,'main/login.html', {'form':form})
+
+
+def logout(request):
+    logout(request)               
+    return redirect('main:index')
 
 
 def register(request):
